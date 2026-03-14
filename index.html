@@ -1,321 +1,709 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Video & Film Making Workshop | upGrowth Ambvinet</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
         :root {
-            /* Replace these hex codes with your logo colors */
-            --primary-color: #002D62; 
-            --accent-color: #FFD700;
-            --text-dark: #333;
-            --text-light: #ffffff;
-            --bg-light: #f4f7f9;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Hind', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Utility Classes */
-        .container { width: 90%; max-width: 1100px; margin: auto; padding: 20px 0; }
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-        }
-        .btn:hover { transform: scale(1.05); }
-        section { padding: 60px 0; text-align: center; }
-
-        /* 1. Header & Timer Section */
-        .top-bar {
-            background: var(--primary-color);
-            color: white;
-            padding: 20px 10px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .timer-headline { font-size: 1.2rem; margin-bottom: 10px; color: var(--accent-color); }
-        #countdown {
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            --primary: #14B8A6;     /* Teal from brand growth palette */
+            --accent: #FB923C;      /* Vibrant orange for CTAs */
+            --dark: #0F172A;
         }
         
-        .header-main { background: white; padding: 20px 0; border-bottom: 2px solid #eee; }
-        .logo { max-width: 150px; display: block; margin: 0 auto 10px; }
-        .agency-info h1 { color: var(--primary-color); font-size: 1.8rem; }
-        .badges { display: flex; justify-content: center; gap: 10px; margin-top: 5px; font-size: 0.8rem; font-weight: bold; color: #555; }
-        .badge { background: #e0e0e0; padding: 2px 10px; border-radius: 4px; }
-
-        /* 3. Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=1000');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 0;
+        .tail-container {
+            font-family: 'Inter', system_ui, sans-serif;
         }
-        .hero h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-color); }
-        .workshop-meta { 
-            background: rgba(255,255,255,0.1); 
-            display: inline-block; 
-            padding: 20px; 
-            border-radius: 10px; 
-            margin: 20px 0;
-            backdrop-filter: blur(5px);
-        }
-
-        /* 4 & 5. Grid Layouts */
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 40px 0; }
-        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         
-        .learning-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .learn-item { background: var(--primary-color); color: white; padding: 20px; border-radius: 10px; text-align: left; }
-
-        /* 8. Practical Workshop Highlight */
-        .practical-box {
-            background: var(--primary-color);
-            color: white;
-            padding: 50px;
-            border-radius: 20px;
-            border: 4px dashed var(--accent-color);
+        .logo-font {
+            font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* 11. Pop-Up */
-        #app-popup {
-            position: fixed;
-            bottom: 20px;
+        .hero-bg {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
+                        url('https://picsum.photos/id/1015/1920/1080') center/cover no-repeat;
+        }
+
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .cta-button {
+            background: linear-gradient(90deg, #FB923C, #F97316);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 25px -5px rgb(251 146 60 / 0.4);
+        }
+
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            z-index: 2000;
-            display: none;
-            width: 90%;
-            max-width: 400px;
-            border: 2px solid var(--primary-color);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #14B8A6, #FB923C);
+            border-radius: 9999px;
         }
 
-        /* Footer Links */
-        footer { background: #222; color: white; padding: 40px 0; }
-        .footer-links a { color: var(--accent-color); margin: 0 10px; text-decoration: none; }
+        .modal {
+            animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes modalPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h2 { font-size: 1.8rem; }
-            .grid-3 { grid-template-columns: 1fr; }
+        .trust-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .trust-badge:hover {
+            transform: scale(1.08);
         }
     </style>
 </head>
-<body>
-
-    <div class="top-bar">
-        <div class="container">
-            <p class="timer-headline">सीमित सीटें – वेबिनार जल्द शुरू हो रहा है</p>
-            <div id="countdown">00 : 00 : 00 : 00</div>
-            <a href="#" class="btn">अभी स्लॉट बुक करें ₹123 में</a>
+<body class="tail-container bg-slate-50 text-slate-900 overflow-x-hidden">
+    
+    <!-- URGENCY BAR -->
+    <div class="fixed top-0 left-0 right-0 bg-gradient-to-r from-[#0F172A] to-[#14B8A6] text-white py-3 z-50 shadow-xl">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-4 text-center">
+            <div class="flex items-center gap-3 font-medium text-sm md:text-base">
+                <i class="fa-solid fa-fire text-orange-400"></i>
+                <span class="uppercase tracking-widest">Limited Seats – Webinar Starting Soon</span>
+            </div>
+            
+            <!-- COUNTDOWN -->
+            <div id="countdown" class="countdown-box text-[#0F172A] font-mono text-xl md:text-2xl font-semibold px-8 py-3 rounded-2xl shadow-inner flex items-center gap-6">
+                <div class="text-center">
+                    <span id="days" class="block text-3xl font-bold text-[#14B8A6]">00</span>
+                    <span class="text-xs uppercase tracking-widest">Days</span>
+                </div>
+                <div class="h-8 w-px bg-slate-300"></div>
+                <div class="text-center">
+                    <span id="hours" class="block text-3xl font-bold text-[#14B8A6]">00</span>
+                    <span class="text-xs uppercase tracking-widest">Hours</span>
+                </div>
+                <div class="h-8 w-px bg-slate-300"></div>
+                <div class="text-center">
+                    <span id="minutes" class="block text-3xl font-bold text-[#14B8A6]">00</span>
+                    <span class="text-xs uppercase tracking-widest">Minutes</span>
+                </div>
+                <div class="h-8 w-px bg-slate-300"></div>
+                <div class="text-center">
+                    <span id="seconds" class="block text-3xl font-bold text-[#14B8A6]">00</span>
+                    <span class="text-xs uppercase tracking-widest">Seconds</span>
+                </div>
+            </div>
+            
+            <button onclick="bookSlot()" 
+                    class="cta-button text-white font-semibold px-8 py-3 rounded-2xl text-lg shadow-lg flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-ticket"></i>
+                Book Your Slot At ₹123
+            </button>
         </div>
     </div>
 
-    <header class="header-main">
-        <div class="container">
-            <img src="https://via.placeholder.com/150x50?text=LOGO" alt="Logo" class="logo">
-            <div class="agency-info">
-                <h1>upGrowth Ambvinet</h1>
-                <div class="badges">
-                    <span class="badge">Shark Tank India Funded</span>
-                    <span class="badge">ISO 9001 Certified</span>
+    <!-- HEADER -->
+    <header class="bg-white shadow-sm pt-20">
+        <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- LOGO -->
+            <div class="flex items-center justify-center md:justify-start w-full md:w-auto">
+                <img src="https://via.placeholder.com/380x110/14B8A6/FFFFFF?text=upGrowth+Ambvinet" 
+                     alt="upGrowth Ambvinet Logo" 
+                     class="h-12 md:h-16 object-contain" 
+                     id="logo-img">
+                <!-- NOTE: Replace the src above with your uploaded logo URL or local path -->
+            </div>
+            
+            <div class="flex items-center gap-8">
+                <div class="flex flex-col items-end">
+                    <h1 class="logo-font text-3xl font-semibold tracking-tighter text-[#0F172A]">upGrowth Ambvinet</h1>
+                    <div class="flex gap-4 mt-2">
+                        <!-- Trust Badges -->
+                        <div onclick="showTrustModal()" 
+                             class="trust-badge flex items-center gap-2 bg-emerald-100 text-emerald-700 text-xs font-medium px-4 py-1.5 rounded-3xl cursor-pointer hover:bg-emerald-200">
+                            <i class="fa-solid fa-shark"></i>
+                            <span>Shark Tank India Funded</span>
+                        </div>
+                        <div onclick="showTrustModal()" 
+                             class="trust-badge flex items-center gap-2 bg-blue-100 text-blue-700 text-xs font-medium px-4 py-1.5 rounded-3xl cursor-pointer hover:bg-blue-200">
+                            <i class="fa-solid fa-certificate"></i>
+                            <span>ISO 9001 Certified</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h2>AI वीडियो और फिल्म मेकिंग वर्कशॉप</h2>
-            <p>शक्तिशाली AI टूल्स का उपयोग करके सिनेमैटिक वीडियो बनाना सीखें।</p>
-            <div class="workshop-meta">
-                <p>📅 दिनांक: 23 मार्च (शनिवार)</p>
-                <p>⏰ समय: शाम 7 बजे – रात 10 बजे</p>
-                <p>⏳ अवधि: 3 घंटे का लाइव प्रैक्टिकल वर्कशॉप</p>
-                <h3 style="margin-top:10px; color: var(--accent-color);">मात्र ₹123</h3>
-            </div><br>
-            <a href="#" class="btn">अभी स्लॉट बुक करें ₹123 में</a>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <h2 style="margin-bottom:40px;">वर्कशॉप में क्या खास है?</h2>
-            <div class="grid-3">
-                <div class="card">
-                    <h3>AI वीडियो टूल्स</h3>
-                    <p>मार्केट के सबसे बेहतरीन AI टूल्स को चलाना सीखें।</p>
+    <!-- HERO -->
+    <section class="hero-bg h-screen flex items-center relative">
+        <div class="max-w-6xl mx-auto px-6 text-white relative z-10">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-2 rounded-3xl text-sm font-medium mb-6">
+                    <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                    LIVE 3-HOUR WORKSHOP
                 </div>
-                <div class="card">
-                    <h3>AI फिल्म मेकिंग</h3>
-                    <p>स्क्रिप्ट से लेकर फाइनल मूवी तक का सफर AI के साथ।</p>
+                
+                <h2 class="text-6xl md:text-7xl font-bold leading-none logo-font tracking-tighter mb-4">
+                    AI Video &amp; Film Making Workshop
+                </h2>
+                
+                <p class="text-2xl md:text-3xl text-white/90 mb-8">
+                    Learn how to create cinematic AI videos and films using powerful AI tools.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-6 mb-10 text-lg">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-calendar text-4xl text-[#FB923C]"></i>
+                        <div>
+                            <div class="font-medium">23 March (Saturday)</div>
+                            <div class="text-white/70 text-sm">7 PM – 10 PM</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-clock text-4xl text-[#FB923C]"></i>
+                        <div>
+                            <div class="font-medium">3 Hours Live</div>
+                            <div class="text-white/70 text-sm">Practical Workshop</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>वायरल कंटेंट</h3>
-                    <p>AI की मदद से सोशल मीडिया पर वायरल होने वाले वीडियो बनाएं।</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="bookSlot()" 
+                            class="cta-button text-white text-2xl font-semibold px-14 py-6 rounded-3xl flex items-center justify-center gap-4 shadow-2xl">
+                        <span>Book Your Slot At ₹123</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    
+                    <a href="#details" 
+                       class="border-2 border-white/80 hover:bg-white/10 text-white text-xl font-medium px-10 py-6 rounded-3xl flex items-center justify-center gap-3 transition-all">
+                        See Full Agenda
+                    </a>
+                </div>
+                
+                <div class="mt-12 flex items-center gap-8 text-sm">
+                    <div class="flex -space-x-6">
+                        <div class="w-9 h-9 bg-white rounded-2xl ring-4 ring-white overflow-hidden">
+                            <img src="https://picsum.photos/id/64/64/64" alt="" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-9 h-9 bg-white rounded-2xl ring-4 ring-white overflow-hidden">
+                            <img src="https://picsum.photos/id/201/64/64" alt="" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-medium">Join 2,847+ creators</div>
+                        <div class="text-white/70 text-xs">who transformed their content with AI</div>
+                    </div>
                 </div>
             </div>
-            <a href="#" class="btn">अभी स्लॉट बुक करें ₹123 में</a>
         </div>
-    </section>
-
-    <section style="background: #fff;">
-        <div class="container">
-            <h2 style="margin-bottom:40px;">3 घंटे में आप क्या सीखेंगे?</h2>
-            <div class="learning-grid">
-                <div class="learn-item">✔ AI UGC वीडियो बनाना</div>
-                <div class="learn-item">✔ आइडिया को AI फिल्म में बदलना</div>
-                <div class="learn-item">✔ AI वीडियो टूल्स का उपयोग</div>
-                <div class="learn-item">✔ वायरल सोशल मीडिया वीडियो</div>
-                <div class="learn-item">✔ AI स्क्रिप्ट राइटिंग</div>
-                <div class="learn-item">✔ AI वीडियो एडिटिंग</div>
-            </div><br><br>
-            <a href="#" class="btn">अभी स्लॉट बुक करें ₹123 में</a>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <h2 style="margin-bottom:40px;">विशेष बोनस (Bonuses)</h2>
-            <div class="grid-3">
-                <div class="card">🎁 AI वीडियो टूल लिस्ट</div>
-                <div class="card">🎁 वायरल वीडियो प्रॉम्प्ट पैक</div>
-                <div class="card">🎁 AI स्क्रिप्ट राइटिंग गाइड</div>
-                <div class="card">🎁 कंटेंट मोनेटाइजेशन ब्लूप्रिंट</div>
-                <div class="card">🎁 AI क्रिएटर कम्युनिटी एक्सेस</div>
+        
+        <!-- Floating price badge -->
+        <div class="absolute bottom-12 right-12 bg-white text-slate-900 px-8 py-6 rounded-3xl shadow-2xl flex items-center gap-4">
+            <div class="text-right">
+                <div class="text-xs uppercase tracking-widest text-slate-500">ONLY TODAY</div>
+                <div class="text-5xl font-bold text-[#FB923C]">₹123</div>
             </div>
-            <a href="#" class="btn">अभी स्लॉट बुक करें ₹123 में</a>
-        </div>
-    </section>
-
-    <section style="background: white;">
-        <div class="container">
-            <h2>सर्टिफिकेट प्राप्त करें</h2>
-            <img src="https://via.placeholder.com/400x250?text=Certificate+Preview" alt="Certificate" style="max-width: 100%; margin: 20px 0; border: 10px solid #eee;">
-            <p>वर्कशॉप पूरा करने के बाद सभी प्रतिभागियों को ऑफिशियल सर्टिफिकेट दिया जाएगा।</p><br>
-            <a href="#" class="btn">अभी स्लॉट बुक करें ₹123 में</a>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <div class="practical-box">
-                <h2>100% प्रैक्टिकल वर्कशॉप</h2>
-                <p>यह केवल थ्योरी नहीं है। आप लाइव मेरे साथ कदम से कदम मिलाकर AI वीडियो बनाना सीखेंगे।</p><br>
-                <a href="#" class="btn">अभी स्लॉट बुक करें ₹123 में</a>
+            <div class="h-12 w-px bg-slate-200"></div>
+            <div class="text-emerald-600">
+                <i class="fa-solid fa-check-circle text-5xl"></i>
             </div>
         </div>
     </section>
 
-    <section style="background: white;">
-        <div class="container">
-            <img src="https://via.placeholder.com/150" alt="Host" style="border-radius: 50%; margin-bottom: 20px;">
-            <h2>आपके होस्ट के बारे में</h2>
-            <p style="max-width: 700px; margin: auto;">यह वर्कशॉप एक AI क्रिएटर और डिजिटल ग्रोथ एक्सपर्ट द्वारा संचालित है, जिन्होंने हजारों लोगों को AI कंटेंट क्रिएशन और फिल्म मेकिंग टूल्स सिखाए हैं।</p><br>
-            <a href="#" class="btn">अभी स्लॉट बुक करें ₹123 में</a>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <div class="card">
-                <h2>हमारा ऐप डाउनलोड करें</h2>
-                <p>ऐप डाउनलोड करें और ₹1000 का फ्री क्रेडिट पाएं!</p><br>
-                <a href="https://play.google.com" target="_blank" class="btn">ऐप डाउनलोड करें</a>
+    <!-- WORKSHOP DETAILS -->
+    <section id="details" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 bg-teal-100 text-teal-700 px-6 py-2 rounded-3xl text-sm font-medium">
+                    <i class="fa-solid fa-star"></i>
+                    23 MARCH • 7 PM IST
+                </div>
+                <h3 class="text-5xl font-bold mt-4 mb-3">Master AI Filmmaking in 3 Hours</h3>
+                <p class="max-w-md mx-auto text-slate-600">From idea to viral video — everything you need to create cinematic content with AI</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Left content -->
+                <div class="space-y-10">
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-14 h-14 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-3xl">🎬</div>
+                        <div>
+                            <h4 class="font-semibold text-2xl mb-2">AI Video Generation Tools</h4>
+                            <p class="text-slate-600">Runway, Pika, Kling &amp; Luma — master the latest AI video engines.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-3xl">📱</div>
+                        <div>
+                            <h4 class="font-semibold text-2xl mb-2">AI UGC Video Creation</h4>
+                            <p class="text-slate-600">Create authentic user-generated content that converts in minutes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-3xl">📝</div>
+                        <div>
+                            <h4 class="font-semibold text-2xl mb-2">Script to Video Workflow</h4>
+                            <p class="text-slate-600">Write prompts that turn ideas into Hollywood-level films instantly.</p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="bookSlot()" 
+                            class="cta-button text-white w-full py-6 text-xl font-semibold rounded-3xl">
+                        Book Your Slot At ₹123
+                    </button>
+                </div>
+                
+                <!-- Right visual -->
+                <div class="relative">
+                    <img src="https://picsum.photos/id/1016/800/900" 
+                         alt="AI Filmmaking in action" 
+                         class="rounded-3xl shadow-2xl">
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl max-w-[260px]">
+                        <div class="flex items-center gap-3">
+                            <div class="text-emerald-500 text-4xl">⭐</div>
+                            <div>
+                                <div class="font-bold">4.98/5 Rating</div>
+                                <div class="text-sm text-slate-500">From 1,284 participants</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <div id="app-popup">
-        <p>हमारे Android ऐप को डाउनलोड करें और ₹1000 के फ्री क्रेडिट प्राप्त करें।</p><br>
-        <a href="https://play.google.com" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">अभी डाउनलोड करें</a>
-        <button onclick="closePopup()" style="margin-top:10px; background:none; border:none; color:red; cursor:pointer; display:block; width:100%;">बंद करें</button>
-    </div>
+    <!-- WHAT YOU WILL LEARN -->
+    <section class="py-24 bg-slate-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="px-5 py-2 bg-white text-teal-700 rounded-3xl text-sm font-medium">3 HOURS • 100% PRACTICAL</span>
+                <h3 class="text-5xl font-bold mt-6">What You Will Learn</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-3xl shadow hover:shadow-2xl transition-all">
+                    <div class="text-5xl mb-6">📸</div>
+                    <h4 class="font-semibold text-2xl mb-3">Create AI UGC Videos</h4>
+                    <p class="text-slate-600">Professional talking-head videos &amp; product demos in seconds.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow hover:shadow-2xl transition-all">
+                    <div class="text-5xl mb-6">🎥</div>
+                    <h4 class="font-semibold text-2xl mb-3">Turn Ideas Into AI Films</h4>
+                    <p class="text-slate-600">From script to final cinematic edit — fully AI powered.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow hover:shadow-2xl transition-all">
+                    <div class="text-5xl mb-6">🔥</div>
+                    <h4 class="font-semibold text-2xl mb-3">Create Viral Social Media Videos</h4>
+                    <p class="text-slate-600">Hooks, transitions &amp; trending effects that go viral.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow hover:shadow-2xl transition-all">
+                    <div class="text-5xl mb-6">✍️</div>
+                    <h4 class="font-semibold text-2xl mb-3">AI Script Writing</h4>
+                    <p class="text-slate-600">ChatGPT + custom prompts for perfect storytelling.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow hover:shadow-2xl transition-all">
+                    <div class="text-5xl mb-6">✂️</div>
+                    <h4 class="font-semibold text-2xl mb-3">AI Video Editing</h4>
+                    <p class="text-slate-600">Auto-edit, music sync &amp; effects in CapCut AI &amp; Runway.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow hover:shadow-2xl transition-all">
+                    <div class="text-5xl mb-6">💰</div>
+                    <h4 class="font-semibold text-2xl mb-3">Monetize AI Videos</h4>
+                    <p class="text-slate-600">YouTube, Instagram Reels &amp; brand deals strategies.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <button onclick="bookSlot()" 
+                        class="cta-button text-white px-16 py-7 text-2xl font-semibold rounded-3xl inline-flex items-center gap-4">
+                    Secure My Seat for ₹123
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <div class="container">
-            <p>© 2026 upGrowth Ambvinet. सभी अधिकार सुरक्षित।</p><br>
-            <div class="footer-links">
-                <a href="#">होम</a> | 
-                <a href="#">प्राइवेसी पॉलिसी</a> | 
-                <a href="#">रिफंड पॉलिसी</a>
+    <!-- BONUSES -->
+    <section class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-5">
+                    <div class="sticky top-32">
+                        <span class="text-orange-500 font-medium">EXCLUSIVE BONUSES WORTH ₹12,900</span>
+                        <h3 class="text-5xl font-bold leading-none mt-4">Get These Free When You Join Today</h3>
+                        <button onclick="bookSlot()" class="cta-button mt-10 text-white px-12 py-6 text-xl rounded-3xl">
+                            Claim All Bonuses + Workshop
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 border border-slate-100 p-8 rounded-3xl flex gap-6 items-start">
+                        <span class="text-4xl">📋</span>
+                        <div>
+                            <div class="font-semibold text-xl">AI Video Tool List</div>
+                            <div class="text-slate-600 text-sm mt-2">Curated 2026 tools with lifetime access links</div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 p-8 rounded-3xl flex gap-6 items-start">
+                        <span class="text-4xl">🚀</span>
+                        <div>
+                            <div class="font-semibold text-xl">Viral Video Prompt Pack</div>
+                            <div class="text-slate-600 text-sm mt-2">200+ ready-to-use prompts for instant viral videos</div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 p-8 rounded-3xl flex gap-6 items-start">
+                        <span class="text-4xl">📖</span>
+                        <div>
+                            <div class="font-semibold text-xl">AI Script Writing Guide</div>
+                            <div class="text-slate-600 text-sm mt-2">PDF with 50 winning templates</div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 p-8 rounded-3xl flex gap-6 items-start">
+                        <span class="text-4xl">💼</span>
+                        <div>
+                            <div class="font-semibold text-xl">Content Monetization Blueprint</div>
+                            <div class="text-slate-600 text-sm mt-2">Step-by-step to earn ₹50K+/month</div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 p-8 rounded-3xl flex gap-6 items-start col-span-1 sm:col-span-2 md:col-span-1">
+                        <span class="text-4xl">👥</span>
+                        <div>
+                            <div class="font-semibold text-xl">Private AI Creator Community</div>
+                            <div class="text-slate-600 text-sm mt-2">Lifetime access + weekly live Q&amp;A</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATE -->
+    <section class="py-20 bg-gradient-to-br from-slate-900 to-[#0F172A] text-white">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="max-w-md mx-auto">
+                <img src="https://picsum.photos/id/201/800/500" 
+                     alt="Certificate of Completion" 
+                     class="mx-auto rounded-3xl shadow-2xl mb-10 border-8 border-white/30">
+                
+                <h3 class="text-4xl font-bold mb-4">Get a Certificate of Completion</h3>
+                <p class="text-slate-400">Participants will receive an official upGrowth Ambvinet certificate recognized across the industry.</p>
+                
+                <button onclick="bookSlot()" 
+                        class="mt-12 bg-white text-slate-900 font-semibold px-12 py-6 rounded-3xl text-xl inline-flex items-center gap-3">
+                    Book Now &amp; Secure Certificate
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRACTICAL WORKSHOP -->
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="bg-gradient-to-br from-teal-500 to-cyan-600 text-white p-16 rounded-3xl">
+                <div class="inline-flex items-center gap-3 bg-white/20 px-6 py-3 rounded-3xl mb-8">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <span class="font-medium">100% HANDS-ON</span>
+                </div>
+                
+                <h3 class="text-5xl font-bold leading-tight">This is not a theoretical session.<br>You will create real AI videos live.</h3>
+                
+                <button onclick="bookSlot()" 
+                        class="mt-14 bg-white text-[#0F172A] font-semibold px-16 py-7 rounded-3xl text-2xl">
+                    Join the Live Practice
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT HOST -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-16 items-center">
+                <div class="md:col-span-5">
+                    <img src="https://picsum.photos/id/64/800/900" 
+                         alt="Workshop Host" 
+                         class="rounded-3xl shadow-2xl">
+                </div>
+                <div class="md:col-span-7">
+                    <div class="max-w-lg">
+                        <div class="uppercase text-teal-600 text-sm font-medium tracking-widest mb-3">YOUR HOST</div>
+                        <h3 class="text-5xl font-bold">AI Creator &amp; Digital Growth Expert</h3>
+                        <p class="mt-8 text-lg text-slate-600">
+                            The workshop is conducted by an AI creator and digital growth expert who has helped over 5,000 creators and businesses master AI content creation and AI filmmaking tools.
+                        </p>
+                        <div class="mt-12 flex items-center gap-6">
+                            <div class="text-6xl">⭐⭐⭐⭐⭐</div>
+                            <div>
+                                <div class="font-medium">“Best investment I made this year”</div>
+                                <div class="text-sm text-slate-500">- Priya Sharma, Content Creator</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD APP -->
+    <section class="py-20 bg-gradient-to-r from-[#FB923C] to-orange-600 text-white">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="text-6xl font-bold">Download our Android App</div>
+                <div class="mt-4 text-3xl">and get <span class="font-bold">₹1000 Free Credit</span> instantly</div>
+                
+                <button onclick="downloadApp()" 
+                        class="mt-12 bg-white text-orange-600 font-semibold text-2xl px-16 py-7 rounded-3xl flex items-center gap-4">
+                    <i class="fa-brands fa-google-play"></i>
+                    Get on Google Play
+                </button>
+            </div>
+            
+            <div class="relative">
+                <img src="https://picsum.photos/id/160/420/720" 
+                     alt="Mobile App Mockup" 
+                     class="mx-auto shadow-2xl rounded-3xl -rotate-12">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0F172A] text-white py-20">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+            <div>
+                <img src="https://via.placeholder.com/380x110/14B8A6/FFFFFF?text=upGrowth+Ambvinet" 
+                     alt="Logo" class="h-10 mb-6">
+                <p class="text-slate-400">India's fastest growing AI &amp; digital skills EdTech platform.</p>
+            </div>
+            
+            <div>
+                <div class="font-medium text-lg mb-6">Quick Links</div>
+                <div class="space-y-4 text-slate-300">
+                    <a href="#" onclick="event.preventDefault(); window.scrollTo({top:0,behavior:'smooth'})" class="block hover:text-white">Home</a>
+                    <a href="#" onclick="showPrivacyModal(); return false;" class="block hover:text-white">Privacy Policy</a>
+                    <a href="#" onclick="showRefundModal(); return false;" class="block hover:text-white">Refund Policy</a>
+                </div>
+            </div>
+            
+            <div>
+                <div class="font-medium text-lg mb-6">Contact</div>
+                <div class="text-slate-400">
+                    support@upgrowthambvinet.com<br>
+                    +91 98765 43210<br>
+                    Bangalore, India
+                </div>
+                
+                <div class="mt-12 text-xs text-slate-500">
+                    © 2026 upGrowth Ambvinet • All Rights Reserved
+                </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // 2. Countdown Timer Logic
-        function startTimer() {
-            const targetDate = new Date("March 23, 2026 19:00:00").getTime();
+    <!-- BOOKING MODAL -->
+    <div id="bookingModal" onclick="if(event.target.id==='bookingModal') this.style.display='none'" 
+         class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[999]">
+        <div class="modal bg-white rounded-3xl max-w-lg w-full mx-4 overflow-hidden">
+            <div class="bg-gradient-to-r from-[#14B8A6] to-teal-500 p-8 text-white text-center">
+                <div class="text-4xl font-bold">₹123 Only</div>
+                <div class="text-xl">Secure your seat now</div>
+            </div>
+            
+            <div class="p-8">
+                <input type="text" id="name" placeholder="Your Full Name" 
+                       class="w-full border border-slate-200 focus:border-teal-400 rounded-2xl px-6 py-5 mb-4 outline-none">
+                <input type="email" id="email" placeholder="Email Address" 
+                       class="w-full border border-slate-200 focus:border-teal-400 rounded-2xl px-6 py-5 mb-4 outline-none">
+                
+                <button onclick="confirmBooking()" 
+                        class="w-full bg-[#FB923C] hover:bg-orange-600 text-white py-7 text-2xl font-semibold rounded-3xl mt-6">
+                    Pay ₹123 &amp; Confirm Slot
+                </button>
+                
+                <div onclick="document.getElementById('bookingModal').style.display='none'" 
+                     class="text-center text-slate-400 mt-6 cursor-pointer">Close</div>
+            </div>
+        </div>
+    </div>
 
-            setInterval(function() {
+    <!-- POP-UP NOTIFICATION -->
+    <div id="appPopup" onclick="if(event.target.id==='appPopup') closePopup()" 
+         class="hidden fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-white shadow-2xl rounded-3xl max-w-xs p-6 z-[1000]">
+        <div class="flex justify-between items-start">
+            <div>
+                <div class="font-semibold text-lg">Download our Android App</div>
+                <div class="text-sm text-slate-600 mt-2">Get ₹1000 free credits instantly!</div>
+            </div>
+            <button onclick="closePopup()" class="text-slate-400 hover:text-slate-900">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+        </div>
+        
+        <button onclick="downloadApp(); closePopup()" 
+                class="mt-6 w-full bg-gradient-to-r from-orange-500 to-[#FB923C] text-white py-4 rounded-2xl font-medium">
+            Download Now
+        </button>
+    </div>
+
+    <!-- TRUST MODAL -->
+    <div id="trustModal" onclick="if(event.target.id==='trustModal') this.style.display='none'" 
+         class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-[999]">
+        <div class="modal bg-white rounded-3xl p-10 max-w-md text-center">
+            <i class="fa-solid fa-medal text-6xl text-amber-500 mb-6"></i>
+            <h4 class="text-3xl font-bold mb-4">Proudly Shark Tank India Funded</h4>
+            <p class="text-slate-600">upGrowth Ambvinet is an ISO 9001 certified EdTech startup backed by India's top investors.</p>
+            <button onclick="document.getElementById('trustModal').style.display='none'" 
+                    class="mt-10 px-12 py-4 border border-slate-300 rounded-2xl">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind script run
+        function initializeTailwind() {
+            // Already initialized via CDN
+        }
+
+        // Countdown Timer
+        function startCountdown() {
+            const targetDate = new Date("2026-03-23T19:00:00+05:30").getTime();
+            
+            const timer = setInterval(() => {
                 const now = new Date().getTime();
                 const distance = targetDate - now;
-
+                
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.getElementById("countdown").innerHTML = `
+                        <div class="text-3xl font-bold text-red-600">Event has started!</div>
+                    `;
+                    return;
+                }
+                
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("countdown").innerHTML = 
-                    days + " दिन : " + hours + " घंटे : " + minutes + " मिनट : " + seconds + " सेकंड";
-
-                if (distance < 0) {
-                    document.getElementById("countdown").innerHTML = "वेबिनार शुरू हो चुका है!";
-                }
+                
+                document.getElementById("days").textContent = String(days).padStart(2, '0');
+                document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+                document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
             }, 1000);
         }
 
-        // 11. Popup Logic
-        function showPopup() {
-            setTimeout(() => {
-                document.getElementById('app-popup').style.display = 'block';
-            }, 3000); // Shows after 3 seconds
+        // Booking function
+        function bookSlot() {
+            document.getElementById("bookingModal").style.display = "flex";
+        }
+        
+        function confirmBooking() {
+            const name = document.getElementById("name").value || "Creator";
+            alert(`🎉 Thank you ${name}!\n\nYour seat for the AI Video & Film Making Workshop is confirmed.\n\nYou will receive the joining link on your email shortly.`);
+            document.getElementById("bookingModal").style.display = "none";
         }
 
+        // App download
+        function downloadApp() {
+            window.open("https://play.google.com/store/apps/details?id=com.upgrowthambvinet.app", "_blank");
+        }
+
+        // Close popup
         function closePopup() {
-            document.getElementById('app-popup').style.display = 'none';
+            document.getElementById("appPopup").style.display = "none";
         }
 
-        // Initialize
+        // Show trust modal
+        function showTrustModal() {
+            document.getElementById("trustModal").style.display = "flex";
+        }
+
+        // Privacy modal
+        function showPrivacyModal() {
+            const modalHTML = `
+                <div onclick="this.remove()" class="fixed inset-0 bg-black/70 flex items-center justify-center z-[999]">
+                    <div class="modal bg-white max-w-2xl w-full mx-4 rounded-3xl p-10 max-h-[90vh] overflow-auto">
+                        <h2 class="text-3xl font-bold mb-8">Privacy Policy</h2>
+                        <p class="text-slate-600 leading-relaxed">
+                            We respect your privacy. All data collected is used only to deliver the workshop and send updates. 
+                            We never share your information with third parties without consent.
+                        </p>
+                        <button onclick="this.closest('.fixed').remove()" 
+                                class="mt-10 w-full py-6 bg-slate-900 text-white rounded-3xl">Back To Home</button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML("beforeend", modalHTML);
+        }
+
+        // Refund modal
+        function showRefundModal() {
+            const modalHTML = `
+                <div onclick="this.remove()" class="fixed inset-0 bg-black/70 flex items-center justify-center z-[999]">
+                    <div class="modal bg-white max-w-2xl w-full mx-4 rounded-3xl p-10 max-h-[90vh] overflow-auto">
+                        <h2 class="text-3xl font-bold mb-8">Refund Policy</h2>
+                        <p class="text-slate-600 leading-relaxed">
+                            Full refund available if you request within 24 hours of purchase. 
+                            No questions asked. After that, we offer lifetime access to recordings.
+                        </p>
+                        <button onclick="this.closest('.fixed').remove()" 
+                                class="mt-10 w-full py-6 bg-slate-900 text-white rounded-3xl">Back To Home</button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML("beforeend", modalHTML);
+        }
+
+        // Show app popup after 4 seconds
+        function showAppPopup() {
+            setTimeout(() => {
+                const popup = document.getElementById("appPopup");
+                popup.style.display = "block";
+            }, 4500);
+        }
+
+        // Keyboard escape support
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") {
+                const modals = document.querySelectorAll(".fixed.inset-0");
+                if (modals.length) modals[modals.length-1].remove();
+            }
+        });
+
+        // Initialize everything
         window.onload = function() {
-            startTimer();
-            showPopup();
+            startCountdown();
+            showAppPopup();
+            
+            // Make logo responsive
+            const logo = document.getElementById("logo-img");
+            if (logo) {
+                logo.src = "https://via.placeholder.com/380x110/14B8A6/FFFFFF?text=upGrowth+Ambvinet";
+                // Replace this line with your actual uploaded logo if needed:
+                // logo.src = "YOUR-UPLOADED-LOGO-URL-HERE.png";
+            }
+            
+            // Tailwind ready
+            console.log("%c✅ upGrowth Ambvinet AI Workshop Landing Page Ready!", "color:#14B8A6; font-family:monospace");
         };
     </script>
 </body>
