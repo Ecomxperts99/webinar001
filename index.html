@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>upGrowth Ambvinet | AI Film Making Webinar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --deep-green: #004d2c;
+            --royal-blue: #002366;
+            --accent-glow: #00ffcc;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: white;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #fdfc47 0%, #24fe41 100%); /* Placeholder for your logo colors */
+        }
+        .brand-bg {
+            background: linear-gradient(to right, var(--deep-green), var(--royal-blue));
+        }
+        .btn-book {
+            background: linear-gradient(to right, #D4AF37, #F9D423);
+            color: black;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .btn-book:hover {
+            transform: scale(1.05);
+        }
+        .sticky-timer {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #ff0000;
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-weight: 900;
+        }
+        .floating-app {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--primary-gold);
+            padding: 10px 20px;
+            border-radius: 50px;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            width: 90%;
+            max-width: 400px;
+        }
+        .hidden-page { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- URRENCY TIMER -->
+    <div id="countdown-bar" class="sticky-timer">
+        HURRY! REGISTRATION CLOSES IN: <span id="timer">00:00:00:00</span>
+    </div>
+
+    <!-- MAIN WEBSITE CONTENT -->
+    <div id="home-page">
+        <!-- HEADER -->
+        <header class="p-4 brand-bg flex justify-between items-center border-b border-yellow-600/30">
+            <div class="flex items-center gap-2">
+                <img src="https://i.ibb.co/v4mK9Wf/logo.png" alt="upGrowth Ambvinet Logo" class="h-12 w-12 rounded-full border-2 border-gold-500" onerror="this.src='https://via.placeholder.com/50?text=UA'">
+                <span class="text-xl font-bold text-yellow-500">upGrowth Ambvinet</span>
+            </div>
+            <button onclick="showPage('quicklinks')" class="text-white text-sm bg-white/10 px-3 py-1 rounded">Quick Links</button>
+        </header>
+
+        <!-- TRUST BADGES -->
+        <div class="bg-white py-2 flex justify-center gap-6 items-center overflow-x-auto px-4">
+            <div class="flex items-center gap-2 text-black font-bold text-xs uppercase">
+                <i class="fas fa-award text-blue-600"></i> Shark Tank India Funded
+            </div>
+            <div class="flex items-center gap-2 text-black font-bold text-xs uppercase">
+                <i class="fas fa-certificate text-green-600"></i> ISO 9001:2015 Certified
+            </div>
+        </div>
+
+        <!-- HERO SECTION -->
+        <section class="relative py-12 px-6 text-center">
+            <h1 class="text-3xl md:text-5xl font-black mb-4 leading-tight text-white">
+                Master <span class="text-yellow-500">AI Film & Movie Making</span> in 3 Hours
+            </h1>
+            <p class="text-lg text-gray-300 mb-6">Create Cinematic Masterpieces Using Only AI Tools.</p>
+            
+            <!-- AI FILM IMAGE -->
+            <div id="hero-img-container" class="mb-8 rounded-xl overflow-hidden border-2 border-yellow-500 max-w-2xl mx-auto shadow-2xl">
+                <div class="p-10 bg-gray-800 animate-pulse" id="hero-loading">Generating AI Film Scene...</div>
+                <img id="hero-img" class="hidden w-full h-auto" alt="AI Cinema">
+            </div>
+
+            <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6 inline-block">
+                <p class="text-xl font-bold">📅 23rd March (Saturday)</p>
+                <p class="text-lg">⏰ 7:00 PM - 10:00 PM (3 Hours)</p>
+            </div>
+
+            <div>
+                <button onclick="bookNow()" class="btn-book text-2xl px-10 py-4 rounded-full shadow-lg">
+                    BOOK YOUR SLOT AT ₹123
+                </button>
+            </div>
+        </section>
+
+        <!-- PRACTICAL WORKSHOP SECTION -->
+        <section class="py-12 px-6 bg-white/5 border-y border-white/10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6 text-yellow-500">100% Practical Workshop</h2>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80" alt="Practical Session" class="rounded-lg">
+                    <div class="text-left">
+                        <p class="text-lg mb-4 text-gray-200">This is <strong>NOT a theoretical</strong> lecture. You will bring your laptop and practice LIVE with the host as we build a movie scene together.</p>
+                        <ul class="space-y-3 text-gray-300">
+                            <li><i class="fas fa-check-circle text-green-500"></i> Real-time Tool Access</li>
+                            <li><i class="fas fa-check-circle text-green-500"></i> Step-by-Step Character Design</li>
+                            <li><i class="fas fa-check-circle text-green-500"></i> Script to Video LIVE Demo</li>
+                        </ul>
+                    </div>
+                </div>
+                <button onclick="bookNow()" class="btn-book mt-8 px-8 py-3 rounded-full">Book Your Slot At ₹123</button>
+            </div>
+        </section>
+
+        <!-- WHAT YOU WILL LEARN -->
+        <section class="py-12 px-6">
+            <h2 class="text-3xl font-bold text-center mb-10">What You Will Learn</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="p-6 rounded-xl bg-blue-900/20 border border-blue-500/30">
+                    <i class="fas fa-pen-nib text-3xl mb-4 text-blue-400"></i>
+                    <h3 class="text-xl font-bold mb-2">AI Scripting</h3>
+                    <p class="text-gray-400">How to use AI to write cinematic scripts that sell.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-green-900/20 border border-green-500/30">
+                    <i class="fas fa-user-astronaut text-3xl mb-4 text-green-400"></i>
+                    <h3 class="text-xl font-bold mb-2">Character Consistency</h3>
+                    <p class="text-gray-400">Keep your characters the same across different scenes.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-purple-900/20 border border-purple-500/30">
+                    <i class="fas fa-video text-3xl mb-4 text-purple-400"></i>
+                    <h3 class="text-xl font-bold mb-2">Video Generation</h3>
+                    <p class="text-gray-400">Convert text prompts into 4K cinematic video shots.</p>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button onclick="bookNow()" class="btn-book px-8 py-3 rounded-full">Book Your Slot At ₹123</button>
+            </div>
+        </section>
+
+        <!-- BONUSES SECTION -->
+        <section class="py-12 px-6 brand-bg">
+            <h2 class="text-3xl font-bold text-center mb-10 text-yellow-500">Exclusive Bonuses (Worth ₹4,999)</h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-6xl mx-auto">
+                <div class="bg-black/40 p-4 rounded text-center border border-yellow-500/20">
+                    <div class="text-2xl mb-2">📚</div>
+                    <p class="text-xs font-bold uppercase">AI Prompt E-Book</p>
+                </div>
+                <div class="bg-black/40 p-4 rounded text-center border border-yellow-500/20">
+                    <div class="text-2xl mb-2">🎬</div>
+                    <p class="text-xs font-bold uppercase">Stock Asset Pack</p>
+                </div>
+                <div class="bg-black/40 p-4 rounded text-center border border-yellow-500/20">
+                    <div class="text-2xl mb-2">🛠️</div>
+                    <p class="text-xs font-bold uppercase">AI Tool Directory</p>
+                </div>
+                <div class="bg-black/40 p-4 rounded text-center border border-yellow-500/20">
+                    <div class="text-2xl mb-2">👥</div>
+                    <p class="text-xs font-bold uppercase">Private Community</p>
+                </div>
+                <div class="bg-black/40 p-4 rounded text-center border border-yellow-500/20">
+                    <div class="text-2xl mb-2">📜</div>
+                    <p class="text-xs font-bold uppercase">Bonus Certificate</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATE SECTION -->
+        <section class="py-12 px-6 bg-white text-black text-center">
+            <h2 class="text-3xl font-bold mb-4">Get Certified</h2>
+            <p class="mb-8 italic">Validated by upGrowth Ambvinet & ISO Standards</p>
+            <div class="max-w-md mx-auto border-8 border-double border-gray-300 p-4 shadow-xl">
+                <img src="https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=500&q=80" alt="Certificate Mockup" class="w-full">
+            </div>
+            <button onclick="bookNow()" class="btn-book mt-8 px-8 py-3 rounded-full">Book Your Slot At ₹123</button>
+        </section>
+
+        <!-- HOST SECTION -->
+        <section class="py-12 px-6 bg-gray-900">
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&h=300&q=80" alt="Host" class="w-48 h-48 rounded-full border-4 border-yellow-500 object-cover">
+                <div class="text-left">
+                    <h2 class="text-2xl font-bold mb-2">Meet Your Mentor</h2>
+                    <h3 class="text-yellow-500 text-xl font-bold mb-4">Aryan V. | AI Film Strategist</h3>
+                    <p class="text-gray-300">Aryan has helped over 5,000+ creators leverage AI tools to automate video production. He is known for simplifying complex AI technologies into actionable steps for beginners.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-black py-12 px-6 border-t border-white/10 text-center">
+            <img src="https://i.ibb.co/v4mK9Wf/logo.png" alt="Logo" class="h-10 mx-auto mb-4 grayscale opacity-50">
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 mb-8">
+                <a href="#" class="hover:text-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white">Refund Policy</a>
+                <a href="#" class="hover:text-white">Terms of Service</a>
+                <a href="#" class="hover:text-white">Contact Us</a>
+            </div>
+            <p class="text-xs text-gray-600">© 2024 upGrowth Ambvinet. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <!-- QUICK LINKS PAGE (HIDDEN BY DEFAULT) -->
+    <div id="quicklinks-page" class="hidden-page p-6 min-h-screen bg-gray-900 text-center flex flex-col justify-center">
+        <h2 class="text-3xl font-bold mb-8">Quick Links</h2>
+        <div class="flex flex-col gap-4 max-w-sm mx-auto">
+            <a href="#" class="p-4 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition">Book Slot (₹123)</a>
+            <a href="#" class="p-4 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition">Download Our App</a>
+            <a href="#" class="p-4 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition">Help & Support</a>
+            <button onclick="showPage('home')" class="mt-8 text-yellow-500 font-bold underline">BACK TO HOME</button>
+        </div>
+    </div>
+
+    <!-- FLOATING APP POPUP -->
+    <div class="floating-app">
+        <div class="flex-shrink-0 bg-yellow-500 text-black p-2 rounded-lg text-xs font-bold">₹1000<br>FREE</div>
+        <div class="text-xs text-left">
+            <strong>Download our App</strong><br>
+            Get ₹1000 credits instantly!
+        </div>
+        <a href="https://play.google.com/store" target="_blank" class="bg-white text-black px-4 py-1 rounded-full text-xs font-bold ml-auto">INSTALL</a>
+    </div>
+
+    <script>
+        // API Key (managed by environment)
+        const apiKey = "";
+
+        // 1. TIMER LOGIC
+        function startTimer() {
+            // Target Date: 23 March 2026, 7:00 PM
+            const targetDate = new Date("March 23, 2026 19:00:00").getTime();
+            
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("timer").innerText = 
+                    `${String(days).padStart(2, '0')}d:${String(hours).padStart(2, '0')}h:${String(minutes).padStart(2, '0')}m:${String(seconds).padStart(2, '0')}s`;
+            }, 1000);
+        }
+
+        // 2. HERO IMAGE GENERATION (AI FILM THEME)
+        async function generateHeroImage() {
+            const prompt = "A cinematic movie set with high-tech cameras, glowing AI neural network overlays, a director looking at a screen showing a futuristic world, golden lighting, professional 4k aesthetic. Hindi on-screen text: 'एआई फिल्म मेकिंग वेबिनार'";
+            
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        instances: [{ prompt: prompt }],
+                        parameters: { sampleCount: 1 }
+                    })
+                });
+
+                const result = await response.json();
+                if (result.predictions && result.predictions[0]) {
+                    const imgUrl = `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
+                    document.getElementById('hero-img').src = imgUrl;
+                    document.getElementById('hero-img').classList.remove('hidden');
+                    document.getElementById('hero-loading').classList.add('hidden');
+                }
+            } catch (error) {
+                console.error("Image generation failed", error);
+                document.getElementById('hero-loading').innerText = "Failed to load cinematic preview.";
+            }
+        }
+
+        // 3. NAVIGATION LOGIC
+        function showPage(pageId) {
+            window.scrollTo(0, 0);
+            if(pageId === 'home') {
+                document.getElementById('home-page').style.display = 'block';
+                document.getElementById('quicklinks-page').style.display = 'none';
+                document.getElementById('countdown-bar').style.display = 'block';
+            } else {
+                document.getElementById('home-page').style.display = 'none';
+                document.getElementById('quicklinks-page').style.display = 'flex';
+                document.getElementById('countdown-bar').style.display = 'none';
+            }
+        }
+
+        function bookNow() {
+            window.location.href = "#countdown-bar"; // In a real app, this would trigger checkout
+            alert("Redirecting to Payment Gateway (₹123)...");
+        }
+
+        window.onload = () => {
+            startTimer();
+            generateHeroImage();
+        };
+    </script>
+</body>
+</html>
